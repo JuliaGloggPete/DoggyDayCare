@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+//import './AllDogs.css';
 import Welcome from './components/Welcome';
 import AllDogs from './components/AllDogs';
 import DogDetails from './components/DogDetails';
@@ -11,9 +12,6 @@ import backgroundImage from './assets/background.jpg';
 // https://api.jsonbin.io/v3/b/650bf228bb1aab22f2c6018d
 //MasterKey $2a$10$Q.jHslDi5J3WWkt5MGrvoezfIBCJlg5bANY6tMh7MYGWgQRRMzfh2
 //jsonbin123!
-
-
-
 // theoretiktska jag lägga in data om det skulle uppdateras men det gör den ju inte
 function App() {
 
@@ -22,31 +20,12 @@ function App() {
   let content = null;
   const [currentScreen, setCurrentScreen] = useState(WELCOME)
 
-  switch(currentScreen){
+ const[data, setData] = useState([]);
+//"https://api.jsonbin.io/v3/b/650a7ebece39bb6dce7f5683"
+//const apiURL = 'https://api.jsonbin.io/v3/b/650d338d12a5d376598172f6'
+//"https://api.jsonbin.io/v3/b/650a7ebece39bb6dce7f5683"
+const apiURL = 'https://api.jsonbin.io/v3/b/65112e6654105e766fb95cc8'
 
-    case WELCOME :
-      content = <Welcome pawImage={pawImage} backgroundImage ={backgroundImage} />
-      break;
-      
-    case ALLDOGS:
-      content = <AllDogs/>
-      break;
-    case WELCOME :
-      content = <DogDetails/>
-      break;
-
-      default:
-        content = <Welcome pawImage={pawImage} />
-
-
-
-
-  }
-
-
- const[data, setData] = useState(null);
-
-const apiURL = "https://api.jsonbin.io/v3/b/650a7ebece39bb6dce7f5683"
 
 const fetchData = async () => {
   try {
@@ -57,18 +36,58 @@ const fetchData = async () => {
     console.log("hej");
 
     const dogData = await response.json();
-    setData(dogData);
+    
+    setData(dogData.record);
+  /* if (dogData != []) {
+    let dogs = data;
+    console.log("allla ",dogs);
+   }*/
+
   } catch (error) {
     console.error("Error fetching data:", error);
   }
   console.log({data});
+ 
+ 
 };
+
+//
 
   useEffect(() => {
 
   fetchData();
   }, [])
+  
+  useEffect(() => {
 
+    console.log({data})
+
+    
+    }, [data])
+  
+
+  switch(currentScreen){
+
+    case WELCOME :
+      content = <Welcome pawImage={pawImage} backgroundImage ={backgroundImage} nextScreen={() => setCurrentScreen(ALLDOGS)}/>
+      break;
+      
+    case ALLDOGS:
+      content = <AllDogs dogs={data}/>
+      //dogs={data}
+      console.log("jalla",{data})
+      break;
+    case DOGDETAILS :
+      content = <DogDetails/>
+      break;
+
+      default:
+        content = <Welcome pawImage={pawImage} />
+
+
+
+
+  }
 
   return (
    
