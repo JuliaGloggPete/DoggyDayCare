@@ -31,7 +31,7 @@ const AllDogs = (props) => {
         dogElement.className ='dog';
 
         const dogHeading = document.createElement('h2');
-        dogHeading.innerHTML = `${dog.name} ${"\u{1F436}"}`;
+        dogHeading.innerHTML = `${dog.name} ${"\u{1F43E}"}`;
         const dogDescription = document.createElement('ul');
         const dogSex = document.createElement('li')
         if(dog.sex === "female"){
@@ -48,13 +48,21 @@ const AllDogs = (props) => {
         dogBreed.innerText = dog.breed; 
         dogDescription.appendChild(dogBreed);
        const dogPicContainer = document.createElement('div');
-       dogPicContainer.className='dogPic';
+       if (dog.present){
+       dogPicContainer.className='dogPicIn';}
+       else{
+        dogPicContainer.className='dogPicOut';}
+       
        
        
 
         const dogPic = document.createElement('img')
         dogPic.src = dog.img;
         dogPic.alt = dog.name;
+
+        
+
+        dogPic.onload = function(){
         if (dogPic.height > dogPic.width){
             dogPic.className = 'dogWidth'
         }
@@ -62,6 +70,7 @@ const AllDogs = (props) => {
         else{
             dogPic.className = 'dogHeight'
         }
+    };
         dogPicContainer.appendChild(dogPic)
 
     

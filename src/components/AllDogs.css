@@ -1,9 +1,9 @@
-.dogPic{
+.dogPicIn{
     height: 200px;
     width:200px;
     overflow: hidden;
     border-radius: 50%;
-        border: 10px solid burlywood;
+        border: 10px solid green;
     max-width: 80vw;
     max-height: 80vw;
         display: flex;
@@ -14,20 +14,36 @@
         align-self: center;
     }
 
-  /*  .dogPic img{
-        /*justify-self: center;
-        align-self: center;
-    }
-    */
+    .dogPicOut{
+        height: 200px;
+        width:200px;
+        overflow: hidden;
+        border-radius: 50%;
+            border: 10px solid red;
+        max-width: 80vw;
+        max-height: 80vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 25px;
+            margin-bottom: 10px;
+            align-self: center;
+        }
+
+   /*.dogPic img{
+     
+    height:  100%;
+    }*/
+   
 
     .dogWidth {
-        
+       
         width: 100%;
     }
 
     .dogHeight {
 
-        height: 100%;
+        height:  100%;
     }
     .dog{
         width: calc(25% - 20px); 
