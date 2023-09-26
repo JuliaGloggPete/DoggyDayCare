@@ -3,8 +3,11 @@ import './AllDogs.css';
 
 const AllDogs = (props) => {
 
-    const dogArray = props.dogs;
-    console.log(dogArray);
+    const dogArray = props.dogs
+    .filter(dog => dog.present) 
+    .concat(props.dogs.filter(dog => !dog.present));
+
+    //console.log(dogArray);
 
     useEffect(() => {
 
@@ -19,7 +22,11 @@ const AllDogs = (props) => {
         dogs.forEach(dog => {
 
             const dogElement = createDogElements(dog);
+            
+          
             dogsSection.appendChild(dogElement);
+
+        
         });
       
       
@@ -32,22 +39,8 @@ const AllDogs = (props) => {
 
         const dogHeading = document.createElement('h2');
         dogHeading.innerHTML = `${dog.name} ${"\u{1F43E}"}`;
-        const dogDescription = document.createElement('ul');
-        const dogSex = document.createElement('li')
-        if(dog.sex === "female"){
-        dogSex.innerText = `Tik`;}
-        else{
-            //dogSex.innerText = `Kön: hane ${dog.sex}`;}
-      
-            dogSex.innerText = `Hane`;}
-      
-        ;
 
-        dogDescription.appendChild(dogSex);
-        const dogBreed = document.createElement('li')
-        dogBreed.innerText = dog.breed; 
-        dogDescription.appendChild(dogBreed);
-       const dogPicContainer = document.createElement('div');
+        const dogPicContainer = document.createElement('div');
        if (dog.present){
        dogPicContainer.className='dogPicIn';}
        else{
@@ -72,15 +65,57 @@ const AllDogs = (props) => {
         }
     };
         dogPicContainer.appendChild(dogPic)
+        const dogDescription = document.createElement('div');
+        const dogSex = document.createElement('p')
+       
 
-    
+        if(dog.sex === "female"){
+            
+        dogSex.innerText = `Tik`
+        ;}
+        else{
+            //dogSex.innerText = `Kön: hane ${dog.sex}`;}
+      
+            dogSex.innerText = `Hane`;}
+      
+        ;
 
-
+        dogDescription.appendChild(dogSex);
+        
+        const chipNumber = document.createElement('p')
+        chipNumber.innerText =`Chipnumret: ${ dog.chipNumber}`; 
+        dogDescription.appendChild(chipNumber);
+      
+        const ownerInformation = document.createElement('div')
+        const ownerHeading = document.createElement("h2");
+        ownerHeading.innerText = "Ägare"
+        ownerInformation.appendChild(ownerHeading);
+        const ownerName = document.createElement('p')
+        ownerName.innerText = `${dog.owner.name} ${dog.owner.lastName}`; 
+        ownerInformation.appendChild(ownerName);
+      
+      
+         const ownerPhone = document.createElement('p')
+        ownerPhone.innerText = `Tel.: ${dog.owner.phoneNumber}`; 
+        ownerInformation.appendChild(ownerPhone);
+        dogDescription.className = 'hidden';
+      
+      dogDescription.appendChild(ownerInformation)
+       
+       dogElement.appendChild(dogPicContainer);
+      
         dogElement.appendChild(dogHeading);
 
         dogElement.appendChild(dogDescription);
     
-        dogElement.appendChild(dogPicContainer);
+       /* dogElement.addEventListener('click', () => {
+
+
+            props.nextScreen()
+          /*  dogDescription.className = "show";
+  
+              console.log("HEj")
+             });*/
      
         return dogElement;
 

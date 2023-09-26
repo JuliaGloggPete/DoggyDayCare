@@ -73,12 +73,12 @@ const fetchData = async () => {
       break;
       
     case ALLDOGS:
-      content = <AllDogs dogs={data}/>
+      content = <AllDogs dogs={data} nextScreen={() => setCurrentScreen(DOGDETAILS)}/>
       //dogs={data}
-      console.log("jalla",{data})
+     // console.log("jalla",{data})
       break;
     case DOGDETAILS :
-      content = <DogDetails/>
+      content = <DogDetails nextScreen={() => setCurrentScreen(ALLDOGS)}/>
       break;
 
       default:

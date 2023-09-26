@@ -9,8 +9,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-left: 25px;
-        margin-bottom: 10px;
+        margin-left: 30px;
+        margin-bottom: 15px;
+        margin-top: 10px;
+
         align-self: center;
     }
 
@@ -19,7 +21,7 @@
         width:200px;
         overflow: hidden;
         border-radius: 50%;
-            border: 10px solid red;
+            border: 10px solid burlywood;
         max-width: 80vw;
         max-height: 80vw;
             display: flex;
@@ -28,6 +30,7 @@
             margin-left: 25px;
             margin-bottom: 10px;
             align-self: center;
+            opacity: 75%;
         }
 
    /*.dogPic img{
@@ -69,5 +72,11 @@
         /*background-image: url('../assets/background.jpg');*/
         max-width:1200px;
         background-color: burlywood;
+     
+
+    }
+    .hidden{
+        /*background-color: aliceblue;*/
+        display:none;
 
     }
