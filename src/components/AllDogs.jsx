@@ -12,24 +12,59 @@ const AllDogs = (props) => {
     useEffect(() => {
 
         createDog(dogArray);
-        }, [])
+        }, []);
 
-    
+
+   // const overlay =document.getElementById('overlay');
+    //const overlayImg = document.querySelector('#overlay img');
+    //const overlayTitle = document.querySelector('#overlay h2');
+
+
+
     const createDog = (dogs) =>{
 
-        const dogsSection = document.getElementById('allDogs') 
+        const dogsSection = document.getElementById('allDogs');
+        const overlay =document.getElementById('overlay'); 
 
         dogs.forEach(dog => {
 
             const dogElement = createDogElements(dog);
-            
+           
           
             dogsSection.appendChild(dogElement);
 
+            dogElement.addEventListener('click', () =>{
+              
+                overlay.appendChild(dogElement)
+                //dogDescription.className = "shown";
+                console.log('syntax problem')
+                overlay.classList.toggle('show')
+                
+              /*  if (dogElement){
+                dogDetail(dogElement)
+                }*/
+         
+             })
         
         });
       
       
+       
+      }
+
+   //   overlay.addEventListener('click', () =>{
+     //   overlay.classList.toggle('hidden')
+     // })
+
+
+      const dogDetail = (dogElement) =>{
+
+        overlay.appendChild(dogElement)
+        //overlayImg = img;
+        overlay.classList.toggle('show')
+    
+
+
       }
 
       const createDogElements = (dog) =>{
@@ -40,7 +75,7 @@ const AllDogs = (props) => {
         const dogHeading = document.createElement('h2');
         dogHeading.innerHTML = `${dog.name} ${"\u{1F43E}"}`;
 
-        const dogPicContainer = document.createElement('div');
+     const dogPicContainer = document.createElement('div');
        if (dog.present){
        dogPicContainer.className='dogPicIn';}
        else{
@@ -98,7 +133,8 @@ const AllDogs = (props) => {
          const ownerPhone = document.createElement('p')
         ownerPhone.innerText = `Tel.: ${dog.owner.phoneNumber}`; 
         ownerInformation.appendChild(ownerPhone);
-        dogDescription.className = 'hidden';
+        
+        //dogDescription.className = 'hidden';
       
       dogDescription.appendChild(ownerInformation)
        
@@ -107,15 +143,16 @@ const AllDogs = (props) => {
         dogElement.appendChild(dogHeading);
 
         dogElement.appendChild(dogDescription);
-    
-       /* dogElement.addEventListener('click', () => {
+
+   
+    dogDescription.className = "hidden"
+       dogElement.addEventListener('click', () => {
 
 
-            props.nextScreen()
-          /*  dogDescription.className = "show";
+           dogDescription.classList = "show";
   
               console.log("HEj")
-             });*/
+             });
      
         return dogElement;
 
@@ -127,7 +164,14 @@ console.log({dogArray});
     return (
         <section id="allDogs">
            <div className="h3Dog"> <h3> Våra hundar</h3></div>
+           
+           
+           <div id= "overlay">
+           
+
+           </div>
         </section>
+
     )
 }
 
