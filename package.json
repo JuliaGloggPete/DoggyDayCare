@@ -1,6 +1,6 @@
 {
   "name": "doggydaycare",
-  "private": false,
+  "private": true,
   "homepage": "https://juliagloggpete.github.io/DoggyDayCare",
   "version": "0.0.0",
   "type": "module",
